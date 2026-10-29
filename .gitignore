@@ -1,0 +1,6 @@
+.venv
+.sh
+.scripts
+results/
+README_internal
+.md

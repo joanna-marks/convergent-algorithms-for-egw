@@ -2,5 +2,4 @@
 .sh
 .scripts
 results/
-README_internal
-.md
+__pycache__/

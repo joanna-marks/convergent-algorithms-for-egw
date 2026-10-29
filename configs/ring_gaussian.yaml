@@ -1,0 +1,40 @@
+experiment:
+  name: ring_gaussians
+  output_root: results
+  seed: 0
+
+data:
+  type: ring_gaussians
+  n_points: 100 # the same for x and y
+  dimension: 2
+  gaussian_mean: 0.0 
+  gaussian_sigma: 0.1
+  ring_radius: 5.0
+  weights: random
+  cost_power: 6
+
+algorithm:
+  methods: [amd, dual_variational, variational, accelerated]
+  reg: 1 # ragularization parameter
+  alpha_values: [0.1, 0.5, 0.9, 1] # alpha values for AMD
+  tol: 1e-6  #outer stoping tolerance
+  objective_mode: full #add the constant terms to the objective value
+  max_iterations: 300  #outer maximum number of iterations
+
+  #Sinkhorn method
+  sinkhorn_tol: 1e-9
+  sinkhorn_max_iterations: 20000
+  sinkhorn_method: sinkhorn_epsilon_scaling #used for stability
+ 
+  #Variational method parameters
+  factorization: memory_efficient #use memory efficient factorization 
+  var_inner_step: 0.05 #inner step size 
+  var_inner_steps: 200 #mazimum number of inner iterations 
+  variational_L: null # value of L for the Varational (L-1) method, if set to null then theoretical L is used
+  accelerated_L: null # value of L for the  Accelerated varational (L-1) method, if set to null then theoretical L is used
+  
+
+saving:
+  save_plots: true
+  save_final_couplings: true
+  save_full_history: false

@@ -1,0 +1,41 @@
+experiment:
+  name: sphere
+  output_root: results
+  seed: 0
+
+data:
+  type: sphere
+  n_points: 100
+  mean_direction: [0.0, 0.0, 1.0]
+  kappa: 40.0
+  rotate_y: true
+  distance: spherical_geodesic
+  weights: random
+
+algorithm:
+  methods: [amd, dual_variational, variational, accelerated]
+  reg: 0.01 # ragularization parameter
+  alpha_values: [0.1, 0.5, 0.9, 1] # alpha values for AMD, set "theoretical" to run with the theoretical step size
+  max_iterations: 10000 #outer maximum number of iterations
+  tol: 1e-6  #outer stoping tolerance
+  objective_mode: full #add the constant terms to the objective value
+
+  #Sinkhorn solver parameters
+  sinkhorn_tol: 1e-9
+  sinkhorn_max_iterations: 1000
+  sinkhorn_method: sinkhorn
+
+
+  #Variational method parameters
+  factorization: memory_efficient #use memory efficient factorization 
+  var_inner_step: 0.5 #inner step size 
+  var_inner_steps: 100 #mazimum number of inner iterations 
+  variational_L: null # value of L for the Varational (L-1) method, if set to null then theoretical L is used
+  accelerated_L: null # value of L for the  Accelerated varational (L-1) method, if set to null then theoretical L is used
+  
+
+saving:
+  save_plots: true
+  save_distance_matrices: false
+  save_final_couplings: true
+  save_full_history: false

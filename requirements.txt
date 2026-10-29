@@ -1,0 +1,7 @@
+numpy==2.4.4
+POT==0.9.6.post1
+matplotlib==3.10.9
+PyYAML==6.0.3
+threadpoolctl==3.6.0
+ipykernel==7.2.0
+

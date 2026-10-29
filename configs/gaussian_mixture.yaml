@@ -1,0 +1,46 @@
+experiment:
+  name: gaussian_mixture
+  output_root: results
+  seed: 0
+
+data:
+  type: gaussian_mixture
+  n_components: 10
+  n_points_x: 1000
+  n_points_y: 1000
+  dimension_x: 10
+  dimension_y: 15
+  sigma_x: 0.45
+  sigma_y: 0.45
+  center_scale_x: 3.0
+  center_scale_y: 3.0
+  dirichlet_concentration: 2.0
+  cost_scale: 3.0
+  weights: random
+
+algorithm:
+  reg: 0.1 # ragularization parameter
+  alpha_values: [0.1, 0.5, 0.9, 1] # alpha values for AMD, set "theoretical" to run with the theoretical step size
+  max_iterations: 10000 #outer maximum number of iterations
+  tol: 1e-6 #outer stoping tolerance
+  objective_mode: full #add the constant terms to the objective value
+
+  #Sinkhorn solver parameters
+  sinkhorn_tol: 1e-9 
+  sinkhorn_max_iterations: 1000 
+  sinkhorn_method: sinkhorn
+
+
+  #Variational method parameters
+  factorization: memory_efficient #use memory efficient factorization 
+  var_inner_step: 0.5 #inner step size 
+  var_inner_steps: 100 #mazimum number of inner iterations 
+  variational_L: null # value of L for the Varational (L-1) method, if set to null then theoretical L is used
+  accelerated_L: null # value of L for the  Accelerated varational (L-1) method, if set to null then theoretical L is used
+
+saving:
+  save_plots: true 
+  save_point_clouds: true
+  save_distance_matrices: false
+  save_final_couplings: true
+  save_full_history: false

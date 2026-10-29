@@ -1,0 +1,27 @@
+experiment:
+  name: instability_example
+  output_root: results
+
+data:
+  type: example_reconstruction
+  powers: [6, 2]
+
+algorithm:
+  methods: [amd, dual_variational, variational]  # or [all]
+  reg: 0.01  # ragularization parameter
+  alpha_values: [0.1, 0.5, 0.9, 1] # alpha values for AMD
+  max_iterations: 300  #outer maximum number of iterations
+  tol: 1e-6 #outer stopping tolerance
+  objective_mode: full #add the constant terms to the objective value
+
+  #Sinkhron parameters
+  sinkhorn_tol: 1.0e-9
+  sinkhorn_max_iterations: 10000
+  sinkhorn_method: sinkhorn
+
+  #Variational method parameters
+  factorization: memory_efficient #use memory efficient factorization 
+  var_inner_step: 0.5 #inner step size 
+  var_inner_steps: 100 #mazimum number of inner iterations 
+  variational_L: null # value of L for the Varational (L-1) method, if set to null then theoretical L is used
+  accelerated_L: null # value of L for the  Accelerated varational (L-1) method, if set to null then theoretical L is used
